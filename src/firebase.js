@@ -22,6 +22,7 @@ class Firebase{
 	constructor(){
 		if(!app.apps.length){
       		app.initializeApp(firebaseConfig);
+      		this.app = app.database();
     	}
 	}
 
