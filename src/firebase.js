@@ -23,15 +23,22 @@ class Firebase{
 		if(!app.apps.length){
       		app.initializeApp(firebaseConfig);
       		this.app = app.database();
+      	
     	}
+    	//this.storage = app.storage();
 	}
 
 	login(email, password){
-		return app.auth().signInEmailAndPassword(email, password);
+		return app.auth().signInWithEmailAndPassword(email, password)
 	}
 
+	logout(){
+    	return app.auth().signOut();
+	}
+
+
 	async registro(nome, email, password){
-		await app.auth().createUserWithEmailAndPassword(email, password);
+		await app.auth().createUserWithEmailAndPassword(email, password)
 
 		const uid = app.auth().currentUser.uid;
 
@@ -45,6 +52,25 @@ class Firebase{
 			app.auth().onAuthStateChanged(resolve);
 		})
 	}
+
+	getCurrent(){
+    	return app.auth().currentUser && app.auth().currentUser.email
+  	}
+
+	getCurrentUid(){
+	  return app.auth().currentUser && app.auth().currentUser.uid
+	}
+
+  async getUserName(callback){
+    if(!app.auth().currentUser){
+      return null;
+    }
+
+    const uid = app.auth().currentUser.uid;
+    await app.database().ref('usuarios').child(uid)
+    .once('value').then(callback);
+
+  }
 }
 
 export default new Firebase();

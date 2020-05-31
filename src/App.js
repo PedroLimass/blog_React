@@ -5,6 +5,8 @@ import firebase from './firebase';
 import Home from './componentes/Home';
 import Login from './componentes/Login';
 import Header from './componentes/Header';
+import Dashboard from './componentes/Dashboard';
+
 import './global.css';
 
 
@@ -28,6 +30,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/dashboard" component={Dashboard}/>
           </Switch>
       </BrowserRouter>
     ) : (

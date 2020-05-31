@@ -15,8 +15,16 @@ class Login extends Component{
 		this.login = this.login.bind(this);
 	}
 
+	componentDidMount(){
+    //Verificar se tem algum usuario logado!
+    if(firebase.getCurrent()){
+      return this.props.history.replace('dashboard');
+    }
+  }
+
 	entrar(e){
 		e.preventDefault();
+		this.login();
 	}
 
 	login = async () =>{
@@ -31,9 +39,10 @@ class Login extends Component{
 					alert('Codigo de erro: '+ error.code);
 					return null;
 				}
-			})
+			});
+			this.props.history.replace('/dashboard');
 			
-		} catch(error) {
+		}catch(error) {
 			alert(error.message);
 		}
 
