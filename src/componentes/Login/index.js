@@ -61,7 +61,7 @@ class Login extends Component{
 
 					<button type="submit">Entrar</button>
 
-					<Link to="/register">Ainda não possui uma conta?</Link>
+					<Link to="/registro">Ainda não possui uma conta?</Link>
 				</form>
 			</div>
 		);

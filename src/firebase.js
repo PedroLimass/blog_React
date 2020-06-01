@@ -1,6 +1,8 @@
 import app from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
+import 'firebase/storage';
+
 
 
  let firebaseConfig = {
@@ -23,10 +25,12 @@ class Firebase{
 		if(!app.apps.length){
       		app.initializeApp(firebaseConfig);
       		this.app = app.database();
-      	
+          this.storage = app.storage();
     	}
-    	//this.storage = app.storage();
+    	
 	}
+
+
 
 	login(email, password){
 		return app.auth().signInWithEmailAndPassword(email, password)
@@ -37,12 +41,12 @@ class Firebase{
 	}
 
 
-	async registro(nome, email, password){
+	async register(nome, email, password){
 		await app.auth().createUserWithEmailAndPassword(email, password)
 
 		const uid = app.auth().currentUser.uid;
 
-		return app.database().ref('usarios').child(uid).set({
+		return app.database().ref('usuarios').child(uid).set({
 			nome: nome
 		})
 	}
