@@ -16,7 +16,8 @@ div#dashboard .user-info a{
   padding: 8px;
   border-radius: 4px;
   font-size: 20px;
-  background-color: #FF0000;
+  background-color: #f44336;
   color: #FFF;
   text-decoration: none;
+  text-align: center;
 }
